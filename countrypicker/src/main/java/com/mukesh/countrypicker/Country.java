@@ -25,7 +25,47 @@ public class Country {
     this.flag = flag;
     this.currency = currency;
   }
+
+  Country(Builder builder) {
+    this.code = builder.code;
+    this.name = builder.name;
+    this.dialCode = builder.dialCode;
+    this.flag = builder.flag;
+    this.currency = builder.currency;
+  }
   // endregion
+
+  public static class Builder {
+    private String code;
+    private String name;
+    private String dialCode = "";
+    private int flag = 0;
+    private String currency = "";
+
+    public Builder(String code, String name) {
+      this.code = code;
+      this.name = name;
+    }
+
+    public Builder setDialCode(String dialCode) {
+      this.dialCode = dialCode;
+      return this;
+    }
+
+    public Builder setFlag(int flag) {
+      this.flag = flag;
+      return this;
+    }
+
+    public Builder setCurrency(String currency) {
+      this.currency = currency;
+      return this;
+    }
+
+    public Country build() {
+      return new Country(this);
+    }
+  }
 
   // region Getter/Setter
   public String getCurrency() {
