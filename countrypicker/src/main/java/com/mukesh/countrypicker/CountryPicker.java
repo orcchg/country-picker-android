@@ -372,15 +372,12 @@ public class CountryPicker
   }
 
   public Country getCountryByName(@NonNull String countryName) {
-    countryName = countryName.toUpperCase();
-    Country country = new Country();
-    country.setName(countryName);
-    int i = Arrays.binarySearch(COUNTRIES, country, new NameComparator());
-    if (i < 0) {
-      return null;
-    } else {
-      return COUNTRIES[i];
+    for (int i = 0; i < COUNTRIES.length; ++i) {
+      if (COUNTRIES[i].getName().compareTo(countryName) == 0) {
+        return COUNTRIES[i];
+      }
     }
+    return null;
   }
 
   public Country getCountryByISO(@NonNull String countryIsoCode) {
